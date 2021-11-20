@@ -13,6 +13,9 @@ public class LairOfEnemies : MonoBehaviour
     public int Xsize = 3;
     public int Zsize = 3;
 
+    private int _numberOfLair = 6;
+
+
     private void Start()
     {
         _maxLairHitPoint = LairHitPoint;
@@ -21,6 +24,11 @@ public class LairOfEnemies : MonoBehaviour
         _healthBar.SetHealthBarHeightAtGround(PositionHealthBar);
         _healthBar.Setup(transform);
         SetHealth(LairHitPoint, _maxLairHitPoint);
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void GetDamage(int damageValue)
@@ -35,11 +43,13 @@ public class LairOfEnemies : MonoBehaviour
 
     private void Destruct()
     {
+        _numberOfLair--;
         Destroy(gameObject, 1f);
         if (_healthBar)
         {
             _healthBar.DelHealthBar();
         }
+        WinCheck();
     }
 
     public void SetHealth(int health, int maxHealth)
@@ -47,5 +57,15 @@ public class LairOfEnemies : MonoBehaviour
         float xScale = (float)health / maxHealth;
         xScale = Mathf.Clamp01(xScale) * Xsize;
         _healthBar.SetHealthBar(xScale);
+    }
+
+     void WinCheck()
+    {
+        //Enemy[] aliveEnemies = FindObjectsOfType<Enemy>();
+        //int numberAliveEnemies = aliveEnemies.Length;
+        if (_numberOfLair == 0)
+        {
+            //Вызываем окно победы
+        }
     }
 }

@@ -253,7 +253,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(_healthBar.gameObject);
         }
-        Destroy(gameObject, 1.5f);
+        Destroy(gameObject.gameObject, 1.5f);
     }
 
     public void SetHealth(int health, int maxHealth)

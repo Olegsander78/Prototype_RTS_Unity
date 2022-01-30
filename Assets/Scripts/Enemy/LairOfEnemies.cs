@@ -10,10 +10,12 @@ public class LairOfEnemies : MonoBehaviour
     private HealthBar _healthBar;
     public float PositionHealthBar;
 
+    public Menu Menu;
+
     public int Xsize = 3;
     public int Zsize = 3;
 
-    private int _numberOfLair = 6;
+    public static int _numberOfLair = 6;
 
 
     private void Start()
@@ -41,14 +43,15 @@ public class LairOfEnemies : MonoBehaviour
         }
     }
 
+    [ContextMenu("DestructLair")]
     private void Destruct()
-    {
-        _numberOfLair--;
-        Destroy(gameObject, 1f);
+    {        
+        Destroy(gameObject.gameObject, 1f);
         if (_healthBar)
         {
             _healthBar.DelHealthBar();
         }
+        _numberOfLair--;
         WinCheck();
     }
 
@@ -59,13 +62,17 @@ public class LairOfEnemies : MonoBehaviour
         _healthBar.SetHealthBar(xScale);
     }
 
+    [ContextMenu("WinChek")]
      void WinCheck()
     {
         //Enemy[] aliveEnemies = FindObjectsOfType<Enemy>();
         //int numberAliveEnemies = aliveEnemies.Length;
-        if (_numberOfLair == 0)
+        if (_numberOfLair < 1)
         {
+            Debug.LogWarning("Победа!");
+            
             //Вызываем окно победы
+            Menu.OpenWinMenuWindow();
         }
     }
 }

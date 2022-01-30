@@ -46,6 +46,22 @@ public class Menu : MonoBehaviour
         Time.timeScale = 0f;
     }
 
+
+    public void StartRestartScene()
+    {
+
+        CloseStartMenuWindow();
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void RestartScene()
+    {
+
+        CloseStartMenuWindow();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LairOfEnemies._numberOfLair = 6;
+    }
+
     public void CloseStartMenuWindow()
     {
         LevelMenuWindow.SetActive(true);
@@ -55,30 +71,22 @@ public class Menu : MonoBehaviour
         _isActiveStartMenuWindow = false;
         Time.timeScale = 1f;
     }
-
-    public void StartRestartScene()
-    {
-        
-        CloseStartMenuWindow();
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    
 
     public void ExitGame()
     {
         Application.Quit();
     }
-
-    public void RestartScene()
-    {
-
-        CloseStartMenuWindow();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+    
 
     public void OpenWinMenuWindow()
     {
         WinMenuWindow.SetActive(true);
         _isActiveWinMenuWindow = true;
+        LevelMenuWindow.SetActive(false);
+        StartMenuWindow.SetActive(false);
+        GameOverMenuWindow.SetActive(false);        
+        Time.timeScale = 0f;
     }
     public void CloseWinMenuWindow()
     {

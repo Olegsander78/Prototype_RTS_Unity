@@ -6,7 +6,7 @@ public class EnemyCreator : MonoBehaviour
 {
     public Transform Spawn;
     public float CreationPeriod;
-    public GameObject EnemyPrefab;
+    public GameObject[] EnemyPrefab;
 
     public int MaxNumberSpawnEnemies;
     private Enemy[] _spawnEnemies;
@@ -22,7 +22,7 @@ public class EnemyCreator : MonoBehaviour
             if (_timer > CreationPeriod)
             {
                 _timer = 0;
-                Instantiate(EnemyPrefab, Spawn.position, Spawn.rotation);
+                Instantiate(EnemyPrefab[Random.Range(0, 2)], Spawn.position, Spawn.rotation);
             }
         }
     }   

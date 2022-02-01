@@ -234,6 +234,7 @@ public class Enemy : MonoBehaviour
 
     }
 
+    //Получение урона врагом
     public void TakeDamage(int damageValue)
     {
         EnemyHealth -= damageValue;
@@ -256,6 +257,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject.gameObject, 1.5f);
     }
 
+    //Установка хелсбара
     public void SetHealth(int health, int maxHealth)
     {
         if (health > 0)
